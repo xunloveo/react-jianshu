@@ -70,7 +70,7 @@ export const SearchWrapper = styled.div`
   float: left;
   position: relative;
 
-  i {
+  .zoom {
     position: absolute;
     right: 5px;
     bottom: 10px;
@@ -87,7 +87,7 @@ export const SearchWrapper = styled.div`
       width: 320px;
     }
 
-    i {
+    .zoom {
       color: #fff;
       background-color: #969696;
     }
@@ -111,6 +111,101 @@ export const NavSearch = styled.input.attrs({
   &::placeholder {
     color: #999;
   }
+`
+
+export const SearchInfo = styled.div`
+  position: absolute;
+  left: 0;
+  top: 60px;
+  width: 240px;
+  box-shadow: 0 0 8px rgb(0, 0, 0, 0.2);
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 12px solid transparent;
+    border-bottom-color: #fff;
+    left: 20px;
+    bottom: 99%;
+  }
+`
+export const SearchTrending = styled.div`
+  box-sizing: border-box;
+  padding: 20px 20px 10px;
+  border-bottom: 1px solid #f0f0f0;
+`
+export const SearchInfoTitle = styled.div`
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  color: #969696;
+
+  span {
+    float: left;
+    font-size: 14px;
+  }
+`
+
+export const SearchInfoSwitch = styled.a`
+  float: right;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: #2f2f2f;
+  }
+
+  .spin {
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 4px;
+    transition: all 0.2s ease-in;
+    transform-origin: center center;
+  }
+`
+
+export const SearchInfoList = styled.ul`
+  line-height: 32px;
+`
+
+export const SearchInfoItem = styled.li`
+  margin-right: 10px;
+  display: inline-block;
+  line-height: 28px;
+  height: 28px;
+`
+
+export const SearchInfoItemLink = styled.a`
+  padding: 2px 6px;
+  font-size: 12px;
+  color: #787878;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    color: #333;
+    border-color: #b4b4b4;
+  }
+`
+
+export const SearchRecent = styled.div`
+  padding: 5px;
+`
+
+export const SearchRecentLink = styled.a`
+  display: block;
+  height: 40px;
+  line-height: 20px;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #333;
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
 `
 
 export const Addition = styled.div`
