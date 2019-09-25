@@ -5,6 +5,7 @@ import logo from '../../static/logo.png'
 export const HeaderWrapper = styled.header`
   height: 55px;
   border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 20px;
 `
 
 export const HeaderLimit = styled.div`
@@ -15,9 +16,7 @@ export const HeaderLimit = styled.div`
   margin: 0 auto;
 `
 
-export const Logo = styled.a.attrs({
-  href: '/'
-})`
+export const Logo = styled.div`
   display: block;
   float: left;
   width: 100px;
@@ -119,6 +118,7 @@ export const SearchInfo = styled.div`
   top: 60px;
   width: 240px;
   box-shadow: 0 0 8px rgb(0, 0, 0, 0.2);
+  background: #fff;
 
   &:after {
     content: '';

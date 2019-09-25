@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
+import { actionCreators as loginActionCreators } from '../../pages/login/store'
 import {
   HeaderWrapper,
   HeaderLimit,
@@ -23,6 +24,7 @@ import {
   Button
 } from './style.js'
 import beta from '../../static/beta.png'
+import { Link } from 'react-router-dom'
 
 class Header extends Component {
   constructor(props) {
@@ -51,7 +53,6 @@ class Header extends Component {
         )
       }
     }
-
     return (
       (focused || mouseIn) && (
         <SearchInfo
@@ -84,15 +85,28 @@ class Header extends Component {
   }
 
   render() {
-    const { focused, list, handleOnFocus, handleOnBlur } = this.props
+    const {
+      focused,
+      list,
+      login,
+      path,
+      handleOnFocus,
+      handleOnBlur,
+      logout
+    } = this.props
     return (
       <HeaderWrapper>
         <HeaderLimit>
-          <Logo>
-            <LogoImg />
-          </Logo>
+          <Link to={'/'}>
+            <Logo>
+              <LogoImg />
+            </Logo>
+          </Link>
+
           <Nav>
-            <NavItem className="left active">首页</NavItem>
+            <Link to={'/'}>
+              <NavItem className="left active">首页</NavItem>
+            </Link>
             <NavItem className="left">下载App</NavItem>
             <SearchWrapper className={focused ? 'focused' : ''}>
               <NavSearch
@@ -102,7 +116,15 @@ class Header extends Component {
               <i className="iconfont zoom">&#xe62b;</i>
               {this.showSearch()}
             </SearchWrapper>
-            <NavItem className="right">登录</NavItem>
+            {!login ? (
+              <Link to={`/login?path=${path}`}>
+                <NavItem className="right">登录</NavItem>
+              </Link>
+            ) : (
+              <NavItem className="right" onClick={logout}>
+                退出
+              </NavItem>
+            )}
             <NavItem className="right cud">
               <img src={beta} height="25" className="beta" alt="beta" />
             </NavItem>
@@ -112,10 +134,12 @@ class Header extends Component {
           </Nav>
           <Addition>
             <Button className="reg">注册</Button>
-            <Button className="writting">
-              <i className="iconfont">&#xe652;</i>
-              <span>写文章</span>
-            </Button>
+            <Link to="/write">
+              <Button className="writting">
+                <i className="iconfont">&#xe652;</i>
+                <span>写文章</span>
+              </Button>
+            </Link>
           </Addition>
         </HeaderLimit>
       </HeaderWrapper>
@@ -125,12 +149,12 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-    // focused: state.get('header').get('focused')
     focused: state.getIn(['header', 'focused']),
     list: state.getIn(['header', 'list']),
     page: state.getIn(['header', 'page']),
     pageTotal: state.getIn(['header', 'pageTotal']),
-    mouseIn: state.getIn(['header', 'mouseIn'])
+    mouseIn: state.getIn(['header', 'mouseIn']),
+    login: state.getIn(['login', 'login'])
   }
 }
 
@@ -158,6 +182,10 @@ const mapDispatchToProps = dispatch => {
       } else {
         dispatch(actionCreators.changePage(1))
       }
+    },
+    logout() {
+      dispatch(loginActionCreators.toggleLogin(false))
+      sessionStorage.removeItem('login')
     }
   }
 }

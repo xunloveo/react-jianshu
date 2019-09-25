@@ -46,6 +46,10 @@ export const GlobalStyle = createGlobalStyle`
     border-spacing: 0;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   .clearfix:after, 
   .clearfix:before {
     content: '';
@@ -54,5 +58,11 @@ export const GlobalStyle = createGlobalStyle`
 
   .clearfix:after {
     clear: both;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `
